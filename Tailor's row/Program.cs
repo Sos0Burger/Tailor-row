@@ -22,13 +22,12 @@ internal class Program
     { 
         double sum = 0;
         double an = (x - 1) / (x + 1);
-        for(int i = 0; i <= n;i++){ 
+        Console.WriteLine($"Значение X: {x}\tЗначение функции: {an}\tКоличество просуммированных аргументов: {0}");
+        for (int i = 1; i < n;i++){ 
+            an = (Math.Pow(x - 1, n + 1))
+                / ((n + 1) * Math.Pow(x + 1, n + 1));
             sum += an;
-            an = (Math.Pow(an - 1, n + 1))
-                / ((n + 1) * Math.Pow(an + 1, n + 1));
-            Console.WriteLine($"Значение X: {an}\tЗначение функции: {sum}\tКоличество просуммированных аргументов: {n}");
+            Console.WriteLine($"Значение X: {x}\tЗначение функции: {an}\tКоличество просуммированных аргументов: {i}");
         }
-        Console.WriteLine(sum);
-
     } 
 }
