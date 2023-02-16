@@ -6,40 +6,27 @@ internal class Program
     private static void Main(string[] args)
     {
         Console.OutputEncoding = Encoding.UTF8;
-        double initialX, endX, epsilon;
+        double x;
+        int n;
         do
         {
-            Console.WriteLine("Введите начальное значение X");
-            initialX = Convert.ToDouble(Console.ReadLine());
-        } while (initialX <= 1 / 2);
-
-        do {
-            Console.WriteLine("Введите конечное значение X");
-            endX = Convert.ToDouble(Console.ReadLine());
-        }while(endX <= 1 / 2);
-        do
-        {
-            Console.WriteLine("Введите точность");
-            epsilon = Convert.ToDouble(Console.ReadLine());
-        }while(epsilon>=1||epsilon<=0);
-        tailorRow(initialX, endX, epsilon);
+            Console.WriteLine("Введите X");
+            x = Convert.ToDouble(Console.ReadLine());
+        } while (x <= 1 / 2);
+        Console.WriteLine("Введите количество повторений");
+        n = Convert.ToInt32(Console.ReadLine());
+        tailorRow(x,n);
     }
 
-    private static void tailorRow(double initialX, double endX, double epsilon)
+    private static void tailorRow(double x, int n)
     { 
         double sum = 0;
-        double n = 0;
-        double an = (initialX - 1) / (initialX + 1);
-        Console.WriteLine($"Значение X: {an}\tЗначение функции: {sum}\tКоличество просуммированных аргументов: {n}");
-        while (an <= endX)
-        { 
+        double an = (x - 1) / (x + 1);
+        for(int i = 0; i <= n;i++){ 
             sum += an;
-            n++;
             an = (Math.Pow(an - 1, n + 1))
                 / ((n + 1) * Math.Pow(an + 1, n + 1));
             Console.WriteLine($"Значение X: {an}\tЗначение функции: {sum}\tКоличество просуммированных аргументов: {n}");
-
-            if (Math.Abs(an) <= epsilon) break;
         }
         Console.WriteLine(sum);
 
